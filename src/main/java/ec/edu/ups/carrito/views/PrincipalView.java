@@ -4,19 +4,25 @@
  */
 package ec.edu.ups.carrito.views;
 
+import ec.edu.ups.carrito.models.controller.ProductoController;
+
 /**
  *
  * @author Usuario
  */
 public class PrincipalView extends javax.swing.JFrame {
 
+        private CrearProductoView crearProductoView; 
+        private ProductoController productoController;
     /**
      * Creates new form PrincipalView
      */
     public PrincipalView() {
         initComponents();
+        
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +53,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         MenuItem.setMnemonic('o');
         MenuItem.setText("Crear");
+        MenuItem.addActionListener(this::MenuItemActionPerformed);
         productosMenu.add(MenuItem);
 
         buscarMenuItem.setMnemonic('s');
@@ -119,6 +126,16 @@ public class PrincipalView extends javax.swing.JFrame {
     private void buscarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarMenuItemActionPerformed
+
+    private void MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActionPerformed
+        // TODO add your handling code here:
+        if(crearProductoView==null || !crearProductoView.isVisible()){
+            crearProductoView = new CrearProductoView();
+            productoController = new ProductoController(crearProductoView);
+            crearProductoView.setVisible(true);
+            desktopPane.add(crearProductoView);
+        }
+    }//GEN-LAST:event_MenuItemActionPerformed
 
     /**
      * @param args the command line arguments
